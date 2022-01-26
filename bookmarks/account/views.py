@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
 from .forms import LoginForm, UserRegistrationForm
+from .models import Profile
 
 # NOT BEING USED ANY MORE
 # (Default Django login view being used.)
@@ -43,6 +44,8 @@ def register(request):
             new_user.set_password(user_form.cleaned_data["password"])
             # Save the user object
             new_user.save()
+            # Create the user profile
+            Profile.objects.create(user=new_user)
             return render(request, "account/register_done.html", {"new_user": new_user})
     else:
         user_form = UserRegistrationForm()
