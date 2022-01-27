@@ -1,5 +1,7 @@
 # Don't add media to github
 media
+cert.crt
+cert.key
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
